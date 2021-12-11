@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Arcgis Web Application</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    
+    #container{
+    		height: auto;
+    		background: rgba(0,0,0,0.5);
+    		position: fixed;
+    		right: 10px;
+    		top: 10px;
+    		z-index: 10;
+    		text-align: center;
+    		padding: 5px 10px;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="https://js.arcgis.com/4.10/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.10/"></script>
+  
+  <script>  
+    function loadMap(maptype){
+    	require([
+      "esri/Map",
+      "esri/views/MapView"
+    ], function(Map, MapView) {
+
+      var map = new Map({
+        basemap: maptype
+      });
+      
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [72.8777, 19.209],
+        zoom: 8
+      });
+      
+    });
+    }
+    
+    loadMap("topo-vector");
+  </script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+  
+  <div id="container"> 
+  <select id="map-select" onchange="loadMap(this.value.toLowerCase())">
+  	
+  	<option>Topo-Vector</option>
+  	<option>Streets</option>
+  	<option>Dark-Gray</option>
+  	<option>Topo</option>
+  	<option>Satellite</option>
+  	<option>Hybrid</option>
+  	<option>Gray</option>
+  	<option>Oceans</option>
+  	<option>national-geographic</option>
+  
+  </select>
+  
+  <div>
+</body>
+</html>
